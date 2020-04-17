@@ -1,7 +1,7 @@
 class wobblyLines
 {
     processing.core.PApplet applet;
-
+    
     public void draw(Object[] args)
     {
         applet.stroke(50);

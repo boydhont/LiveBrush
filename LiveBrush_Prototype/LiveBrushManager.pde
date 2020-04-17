@@ -41,7 +41,98 @@ class LiveBrushManager
     setFileChangeListener(absoluteSourceFolderPath, 1000);
   }
 
-  public void editActiveLiveBrush()
+  public void draw(PApplet applet)
+  {
+    drawLiveBrushInstances(applet);
+  }
+  
+  public void create()
+  {
+    createLiveBrushDocumentWithRandomName();
+  }
+  
+  public void create(String name)
+  {
+    createLiveBrushDocument(name);
+  }
+  
+  public void preview(PApplet applet, PVector origin)
+  {
+    drawActiveLiveBrush(applet, origin);
+  }
+  
+  public void add(PVector origin)
+  {
+    addLiveBrushInstance(origin);
+  }
+
+  public void edit() {
+    editActiveLiveBrush();
+  }
+  
+  public void clear()
+  {
+    clearLiveBrushInstances();
+  }
+  
+  public void openFolder(){
+    openLiveBrushFolder();
+  }
+  
+  public void selectNext()
+  {
+    selectNextLiveBrush();
+  }
+  
+  public void selectPrevious()
+  {
+    selectPreviousLiveBrush();
+  }
+
+  private void openLiveBrushFolder()
+  {
+    try
+    {
+      java.awt.Desktop.getDesktop().open(new java.io.File(this.absoluteSourceFolderPath));
+    }
+    catch(IOException error) {
+      System.out.println(error.getMessage());
+    }
+  }  
+  
+  private void createLiveBrushDocumentWithRandomName()
+  {
+    String randomName = "LiveBrush_"+year()+month()+hour()+minute()+second()+millis(); //TODO generate from current time
+    createLiveBrushDocument(randomName);
+  }
+  
+  private void createLiveBrushDocument(String name)
+  {
+    try{ 
+      String[] templateContent = new String[]{
+      "class " + name,
+      "{",  
+      "\t" + "public processing.core.PApplet applet;",   
+      "\t",
+      "\t"+ "public " + name + "()",
+      "\t" + "{",
+      "\t",
+      "\t" + "}",    
+      "\t",
+      "\t" + "public void draw(Object[] args)",
+      "\t" + "{",
+      "\t" + "\t",
+      "\t" + "}",
+      "}"
+      };
+      
+      String filePath = absoluteSourceFolderPath + "/" + name + ".java";
+      saveStrings(filePath, templateContent);
+      java.awt.Desktop.getDesktop().open(new java.io.File(filePath));
+    }catch(Exception error){System.out.println(error.getMessage());}
+  }
+
+  private void editActiveLiveBrush()
   {
     try
     {
@@ -53,8 +144,13 @@ class LiveBrushManager
       System.out.println(error.getMessage());
     }
   }  
+  
+  private void clearLiveBrushInstances()
+  {
+    this.liveBrushInstances = new ArrayList<LiveBrushInstance>();
+  }
 
-  public void drawActiveLiveBrush(PApplet applet, PVector origin) //TODO Arguments does not work like this, every brush has different arguments, so for now, it only supports PApplet
+  private void drawActiveLiveBrush(PApplet applet, PVector origin) //TODO Arguments does not work like this, every brush has different arguments, so for now, it only supports PApplet
   {
     if (origin == null) return;
     LiveBrush activeLiveBrush = getActiveLiveBrush(activeLiveBrushIndex);
@@ -63,12 +159,12 @@ class LiveBrushManager
     temporaryLiveBrushInstance.draw(applet);
   }
 
-  public void drawLiveBrushInstances(PApplet applet)
+  private void drawLiveBrushInstances(PApplet applet)
   {
     for (LiveBrushInstance liveBrushInstance : liveBrushInstances) liveBrushInstance.draw(applet);
   }
 
-  public void addLiveBrushInstance(PVector origin)
+  private void addLiveBrushInstance(PVector origin)
   {
     LiveBrush activeLiveBrush = getActiveLiveBrush(activeLiveBrushIndex);
     if (activeLiveBrush == null) return;
@@ -76,7 +172,7 @@ class LiveBrushManager
     liveBrushInstances.add(liveBrushInstance);
   }
 
-  public void selectNextLiveBrush()
+  private void selectNextLiveBrush()
   {
     if (liveBrushes == null) return;
     if (liveBrushes.size() <= 0) return;

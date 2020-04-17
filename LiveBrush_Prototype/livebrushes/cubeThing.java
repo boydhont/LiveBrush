@@ -4,8 +4,6 @@ class cubeThing
 
     public void draw(Object[] args)
     {
-        //applet.background(230);
-
         applet.stroke(235);
         applet.line(104, -104,-104,-104);
         applet.line(-104,-104,-104,104);
