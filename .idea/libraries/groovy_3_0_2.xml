@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="groovy-3.0.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/LiveBrush_Prototype/code/groovy-3.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
