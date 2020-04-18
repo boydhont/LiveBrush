@@ -224,7 +224,6 @@ public class LiveBrushManager
 		return liveBrushes.get(activeLiveBrushIndex);
 	}
 
-	//TODO update familyinstances
 	private void updateLiveBrushInstances(ArrayList<LiveBrush> liveBrushes)
 	{
 		if (liveBrushInstances == null) return;
@@ -240,8 +239,4 @@ public class LiveBrushManager
 			}
 		}
 	}
-
-	//TODO create source file from template
-
-	//TODO delete/clear canvas
 }
