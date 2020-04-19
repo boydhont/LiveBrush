@@ -64,7 +64,7 @@ public class LiveBrushInstance
         if (origin == null) return;
 
         applet.push();
-        applet.translate(origin.x, origin.y);
+        applet.translate(origin.x, origin.y); //TODO support 3D
         try {
             groovyObject.setProperty("applet", applet);
             groovyObject.invokeMethod(methodName, null);

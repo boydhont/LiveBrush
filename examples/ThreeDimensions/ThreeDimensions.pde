@@ -1,36 +1,33 @@
-//LiveBrush - Basic example
+//LiveBrush - 3D example
 //
 //Note: First set up the default program on your system for editing .java files
 //This library has been optimized for Visual Studio Code, though any other text editor would suffice
 
 import liveBrush.*;
 
-LiveBrushManager lbm; //The LiveBrush manager holds all brushes and brush controls
+LiveBrushManager lbm;
 
 void setup()
 {
-  size(800, 800);
-  lbm = new LiveBrushManager(this); //Intialize the LiveBrushManager with the default folder path for the LiveBrushes files
-  //lbm = new LiveBrushManager(this, sketchPath() + "/customFolder"); //Optional: Use a custom folder location
+  size(800,800, P3D);
+  smooth(8);
+    
+  lbm = new LiveBrushManager(this);
 }
 
 void draw()
 {
-  background(20);
-
+  background(230);
+  
   lbm.draw(); //Draw all LiveBrush instances in the LiveBrush Manager
   lbm.preview(new PVector(mouseX, mouseY)); //Preview the active LiveBrush at the mouse position
 }
 
 void mousePressed()
 {
+  
   lbm.add(new PVector(mouseX, mouseY)); //Place the active LiveBrush to the LiveBrushManager at the current mouse position
 }
-
-/*void mouseDragged()
-{
-  lbm.add(new PVector(mouseX, mouseY)); //Paint with the active LiveBrush
-}*/
 
 void keyPressed()
 {
