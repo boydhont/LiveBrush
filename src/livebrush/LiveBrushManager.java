@@ -20,25 +20,28 @@ public class LiveBrushManager
 
 	public int activeLiveBrushIndex = 0;
 
-	public LiveBrushManager(String absoluteSourceFolderPath)
+	public LiveBrushManager(PApplet applet, String absoluteSourceFolderPath)
 	{
+		this.applet = applet;
 		this.absoluteSourceFolderPath = absoluteSourceFolderPath;
 		liveBrushes = getLiveBrushesFromExternalSource();
 		liveBrushInstances = new ArrayList<LiveBrushInstance>();
 		setFileChangeListener(absoluteSourceFolderPath, 1000);
 	}
 
-	public LiveBrushManager(String absoluteSourceFolderPath, int refreshDelay)
+	public LiveBrushManager(PApplet applet, String absoluteSourceFolderPath, int refreshDelay)
 	{
+		this.applet = applet;
 		this.absoluteSourceFolderPath = absoluteSourceFolderPath;
 		liveBrushes = getLiveBrushesFromExternalSource();
 		liveBrushInstances = new ArrayList<LiveBrushInstance>();
 		setFileChangeListener(absoluteSourceFolderPath, refreshDelay);
 	}
 
-	public LiveBrushManager()
+	public LiveBrushManager(PApplet applet)
 	{
-		this.absoluteSourceFolderPath = sketchPath() + "/livebrushes/";
+		this.applet = applet;
+		this.absoluteSourceFolderPath = applet.sketchPath() + "/livebrushes/";
 		liveBrushes = getLiveBrushesFromExternalSource();
 		liveBrushInstances = new ArrayList<LiveBrushInstance>();
 		setFileChangeListener(absoluteSourceFolderPath, 1000);
@@ -49,19 +52,19 @@ public class LiveBrushManager
 	 * @param applet The sketch as a PApplet
 	 */
 	
-	public void draw(PApplet applet)
+	public void draw()
 	{
-		drawLiveBrushInstances(applet);
+		drawLiveBrushInstances();
 	}
 
 	/**
 	 * Creates a new Java source document in the LiveBrush folder with a random name
 	 */
 	
-	public void create()
+	/*public void create()
 	{
 		createLiveBrushDocumentWithRandomName();
-	}
+	}*/
 	
 	/**
 	 * Creates a new Java source document in the LiveBrush folder
@@ -79,9 +82,9 @@ public class LiveBrushManager
 	 * @param origin The origin point of the preview
 	 */
 	
-	public void preview(PApplet applet, PVector origin)
+	public void preview(PVector origin)
 	{
-		drawActiveLiveBrush(applet, origin);
+		drawActiveLiveBrush(origin);
 	}
 
 	/**
@@ -158,7 +161,7 @@ public class LiveBrushManager
 	
 	private void createLiveBrushDocumentWithRandomName()
 	{
-		String randomName = "LiveBrush_"+year()+month()+hour()+minute()+second()+millis(); //TODO generate from current time
+		String randomName = "LiveBrush_"+applet.year()+applet.month()+applet.hour()+applet.minute()+applet.second()+applet.millis(); //TODO make this independent of the PApplet
 		createLiveBrushDocument(randomName);
 	}
 
@@ -188,7 +191,7 @@ public class LiveBrushManager
 			};
 
 			String filePath = absoluteSourceFolderPath + "/" + name + ".java";
-			saveStrings(filePath, templateContent);
+			applet.saveStrings(filePath, templateContent); //TODO handle this over a native java library instead of the PApplet
 			java.awt.Desktop.getDesktop().open(new java.io.File(filePath));
 		}catch(Exception error){System.out.println(error.getMessage());}
 	}
@@ -225,7 +228,7 @@ public class LiveBrushManager
 	 * @param origin The origin of the instance
 	 */
 	
-	private void drawActiveLiveBrush(PApplet applet, PVector origin) //TODO Arguments does not work like this, every brush has different arguments, so for now, it only supports PApplet
+	private void drawActiveLiveBrush(PVector origin) //TODO Arguments does not work like this, every brush has different arguments, so for now, it only supports PApplet
 	{
 		if (origin == null) return;
 		LiveBrush activeLiveBrush = getActiveLiveBrush(activeLiveBrushIndex);
@@ -239,7 +242,7 @@ public class LiveBrushManager
 	 * @param applet The sketch as a PApplet
 	 */
 	
-	private void drawLiveBrushInstances(PApplet applet)
+	private void drawLiveBrushInstances()
 	{
 		for (LiveBrushInstance liveBrushInstance : liveBrushInstances) liveBrushInstance.draw(applet);
 	}
@@ -306,7 +309,7 @@ public class LiveBrushManager
 	 * @return A list of LiveBrush objects
 	 */
 	
-	private ArrayList<LiveBrush> getLiveBrushesFromExternalSource() //TODO check this
+	private ArrayList<LiveBrush> getLiveBrushesFromExternalSource()
 	{
 		String absoluteSourceFolderPath = this.absoluteSourceFolderPath;
 		if (absoluteSourceFolderPath == null) return null;
