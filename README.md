@@ -64,6 +64,24 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
   ```
  9. Save the file to update the previously drawn brushes
  10. Experimentation: It is possible to add constructors and import external libraries in the Java files
+  ```
+  import lunar.*;
+   
+  class CircleBrush
+  {
+    public processing.core.PApplet applet;
+
+    public CircleBrush()
+    {
+      System.out.println(applet.frameCount);
+    }
+
+    public void draw(Object[] args)
+    {
+      applet.fill(255);
+      applet.circle(0,0,100);
+    }
+  }
   
 ---
 Boy d'Hont | www.bdhont.net  
