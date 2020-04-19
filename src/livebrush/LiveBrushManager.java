@@ -44,54 +44,103 @@ public class LiveBrushManager
 		setFileChangeListener(absoluteSourceFolderPath, 1000);
 	}
 
+	/**
+	 * Draws all the LiveBrush instances in the manager
+	 * @param applet The sketch as a PApplet
+	 */
+	
 	public void draw(PApplet applet)
 	{
 		drawLiveBrushInstances(applet);
 	}
 
+	/**
+	 * Creates a new Java source document in the LiveBrush folder with a random name
+	 */
+	
 	public void create()
 	{
 		createLiveBrushDocumentWithRandomName();
 	}
-
+	
+	/**
+	 * Creates a new Java source document in the LiveBrush folder
+	 * @param name The name of the new document
+	 */
+	
 	public void create(String name)
 	{
 		createLiveBrushDocument(name);
 	}
 
+	/**
+	 * Draws the active LiveBrush without creating a LiveBrush instance
+	 * @param applet The sketch as a PApplet
+	 * @param origin The origin point of the preview
+	 */
+	
 	public void preview(PApplet applet, PVector origin)
 	{
 		drawActiveLiveBrush(applet, origin);
 	}
 
+	/**
+	 * Adds a LiveBrush instance at the given position
+	 * @param origin The origin point of the instance
+	 */
+	
 	public void add(PVector origin)
 	{
 		addLiveBrushInstance(origin);
 	}
 
+	/**
+	 * Opens a system editor to edit the current livebrush
+	 */
+	
 	public void edit() {
 		editActiveLiveBrush();
 	}
 
+	/**
+	 * Clears the LiveBrushManager of all the LiveBrush instances
+	 */
+	
 	public void clear()
 	{
 		clearLiveBrushInstances();
 	}
 
+	/**
+	 * Opens the system folder containing the LiveBrush source files
+	 */
+	
 	public void openFolder(){
 		openLiveBrushFolder();
 	}
 
+	/**
+	 * Selects the next LiveBrush class
+	 */
+	
 	public void selectNext()
 	{
 		selectNextLiveBrush();
 	}
 
+	/**
+	 * Selects the previous LiveBrush class
+	 */
+	
 	public void selectPrevious()
 	{
 		selectPreviousLiveBrush();
 	}
 
+	/**
+	 * Opens the system folder containing the LiveBrush source files
+	 */
+	
 	private void openLiveBrushFolder()
 	{
 		try
@@ -103,12 +152,21 @@ public class LiveBrushManager
 		}
 	}
 
+	/**
+	 * Creates a new Java source document in the LiveBrush folder with a random name
+	 */
+	
 	private void createLiveBrushDocumentWithRandomName()
 	{
 		String randomName = "LiveBrush_"+year()+month()+hour()+minute()+second()+millis(); //TODO generate from current time
 		createLiveBrushDocument(randomName);
 	}
 
+	/**
+	 * Creates a new Java source document in the LiveBrush folder
+	 * @param name The name of the new document
+	 */
+	
 	private void createLiveBrushDocument(String name)
 	{
 		try{
@@ -135,6 +193,10 @@ public class LiveBrushManager
 		}catch(Exception error){System.out.println(error.getMessage());}
 	}
 
+	/**
+	 * Opens a system editor to edit the current livebrush
+	 */
+	
 	private void editActiveLiveBrush()
 	{
 		try
@@ -148,11 +210,21 @@ public class LiveBrushManager
 		}
 	}
 
+	/**
+	 * Clears the LiveBrushManager of all the LiveBrush instances
+	 */
+	
 	private void clearLiveBrushInstances()
 	{
 		this.liveBrushInstances = new ArrayList<LiveBrushInstance>();
 	}
 
+	/**
+	 * Draws the active LiveBrush without creating a LiveBrush instance
+	 * @param applet The sketch as a PApplet
+	 * @param origin The origin of the instance
+	 */
+	
 	private void drawActiveLiveBrush(PApplet applet, PVector origin) //TODO Arguments does not work like this, every brush has different arguments, so for now, it only supports PApplet
 	{
 		if (origin == null) return;
@@ -162,11 +234,21 @@ public class LiveBrushManager
 		temporaryLiveBrushInstance.draw(applet);
 	}
 
+	/**
+	 * Draws all the LiveBrush instances in the manager
+	 * @param applet The sketch as a PApplet
+	 */
+	
 	private void drawLiveBrushInstances(PApplet applet)
 	{
 		for (LiveBrushInstance liveBrushInstance : liveBrushInstances) liveBrushInstance.draw(applet);
 	}
 
+	/**
+	 * Adds a LiveBrush instance at the given position
+	 * @param origin The origin of the instance
+	 */
+	
 	private void addLiveBrushInstance(PVector origin)
 	{
 		LiveBrush activeLiveBrush = getActiveLiveBrush(activeLiveBrushIndex);
@@ -175,6 +257,10 @@ public class LiveBrushManager
 		liveBrushInstances.add(liveBrushInstance);
 	}
 
+	/**
+	 * Selects the next LiveBrush class
+	 */
+	
 	private void selectNextLiveBrush()
 	{
 		if (liveBrushes == null) return;
@@ -183,6 +269,10 @@ public class LiveBrushManager
 		if (activeLiveBrushIndex >= liveBrushes.size()) activeLiveBrushIndex = 0;
 	}
 
+	/**
+	 * Selects the previous LiveBrush class
+	 */
+	
 	public void selectPreviousLiveBrush()
 	{
 		if (liveBrushes == null) return;
@@ -191,6 +281,12 @@ public class LiveBrushManager
 		if (activeLiveBrushIndex < 0) activeLiveBrushIndex = liveBrushes.size()-1;
 	}
 
+	/**
+	 * Sets the listener for LiveBrush source file changes
+	 * @param absoluteSourceFolderPath The filepath to the LiveBrush source folder
+	 * @param refreshDelay The frequency time to check for file changes
+	 */
+	
 	private void setFileChangeListener(String absoluteSourceFolderPath, int refreshDelay)
 	{
 		TimerTask task = new FileChangeListener(absoluteSourceFolderPath, "java" ) {
@@ -205,6 +301,11 @@ public class LiveBrushManager
 		timer.schedule( task, new Date(), refreshDelay);
 	}
 
+	/**
+	 * Parses LiveBrush objects from external source files
+	 * @return A list of LiveBrush objects
+	 */
+	
 	private ArrayList<LiveBrush> getLiveBrushesFromExternalSource() //TODO check this
 	{
 		String absoluteSourceFolderPath = this.absoluteSourceFolderPath;
@@ -216,6 +317,12 @@ public class LiveBrushManager
 		return liveBrushes;
 	}
 
+	/**
+	 * Retrieves the active LiveBrush
+	 * @param activeLiveBrushIndex The index of the active LiveBrush
+	 * @return The active LiveBrush
+	 */
+	
 	private LiveBrush getActiveLiveBrush(int activeLiveBrushIndex)
 	{
 		if (liveBrushes == null) return null;
@@ -224,6 +331,11 @@ public class LiveBrushManager
 		return liveBrushes.get(activeLiveBrushIndex);
 	}
 
+	/**
+	 * Updates the LiveBrush instances
+	 * @param liveBrushes A list of LiveBrushes
+	 */
+	
 	private void updateLiveBrushInstances(ArrayList<LiveBrush> liveBrushes)
 	{
 		if (liveBrushInstances == null) return;

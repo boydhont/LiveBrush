@@ -39,16 +39,22 @@ public class LiveBrushInstance
         } //TODO specifiy exception
     }
 
-    public void setup(PApplet applet)
-    {
-        invokeGroovyObjectMethod(applet, "setup");
-    }
-
+    /**
+     * Draws the livebrush
+     * @param applet The sketch as an PApplet
+     */
+    
     public void draw(PApplet applet)
     {
         invokeGroovyObjectMethod(applet, "draw");
     }
 
+    /**
+     * Invokes the method in the Java source file
+     * @param applet The sketch as an PApplet
+     * @param methodName The name of the method that has to be invoked
+     */
+    
     private void invokeGroovyObjectMethod(PApplet applet, String methodName)
     {
         if (applet == null) return;

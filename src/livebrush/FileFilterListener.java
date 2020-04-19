@@ -10,6 +10,9 @@ public class FileFilterListener implements FileFilter {
         this.filter = filter;
     }
 
+    /**
+     * Checks if the file has the correct format
+     */
     public boolean accept(File file) {
         if ("".equals(filter)) return true;
         return (file.getName().endsWith(filter));

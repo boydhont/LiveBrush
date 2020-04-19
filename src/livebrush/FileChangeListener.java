@@ -18,6 +18,10 @@ public abstract class FileChangeListener extends TimerTask {
         }
     }
 
+    /**
+     * Checks the given folder for changes
+     */
+    
     public final void run() {
         HashSet checkedFiles = new HashSet();
         filesArray = new File(absoluteBrushFolderPath).listFiles(fileFilterListener);

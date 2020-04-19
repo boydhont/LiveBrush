@@ -15,6 +15,12 @@ public class LiveBrush
         liveBrushClass = getLiveBrushClass(absoluteSourceFilePath);
     }
 
+    /**
+     * Parses a class from an external Java source document
+     * @param absoluteSourceFilePath The file path to the source file of the class
+     * @return The class
+     */
+    
     private Class getLiveBrushClass(String absoluteSourceFilePath)
     {
         try
