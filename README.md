@@ -71,9 +71,12 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
   {
     public processing.core.PApplet applet;
 
+    String message;
+
     public CircleBrush()
     {
-      System.out.println(applet.frameCount);
+      message = "Good luck with the experimentation"
+      System.out.println(message);
     }
 
     public void draw(Object[] args)
