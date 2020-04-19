@@ -49,7 +49,7 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
   ```
 6. Run sketch
 7. Trigger the create function. In this case, press "n"
-8. A Java file is ready to be edited. Processing nativ functions can be used by calling the "applet" object 
+8. A Java file is ready to be edited. Processing native functions can be used by calling the "applet" object 
   ```
   class CircleBrush
   {
