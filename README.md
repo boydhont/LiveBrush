@@ -7,7 +7,7 @@ Live Brush islibrary for live coding with dynamic brushes, developed for Process
 Live Brush is meant for live performing and rapid prototyping. Old Processing sketches can be easily recycled to create new interesting visuals in a few minutes, new concepts allow to be propotyped in an instance.
 
 ## How to work with Live Brush?
-1. Set up the default program on your system for editing .java files (for example Visual Studio Code https://code.visualstudio.com/)
+1. Set up the default program on your system for editing .java files
 2. Create a new Processing sketch and save it
 3. Initialize the LiveBrushManager as a global variable in the setup function
   ```
