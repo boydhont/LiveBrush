@@ -1,4 +1,5 @@
 package livebrush;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TimerTask;
@@ -159,6 +160,7 @@ public class LiveBrushManager
 	 * Creates a new Java source document in the LiveBrush folder with a random name
 	 */
 	
+	@SuppressWarnings({ "unused", "static-access" })
 	private void createLiveBrushDocumentWithRandomName()
 	{
 		String randomName = "LiveBrush_"+applet.year()+applet.month()+applet.hour()+applet.minute()+applet.second()+applet.millis(); //TODO make this independent of the PApplet
@@ -309,6 +311,7 @@ public class LiveBrushManager
 	 * @return A list of LiveBrush objects
 	 */
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private ArrayList<LiveBrush> getLiveBrushesFromExternalSource()
 	{
 		String absoluteSourceFolderPath = this.absoluteSourceFolderPath;

@@ -7,7 +7,8 @@ import java.io.File;
 public class LiveBrush
 {
     public String absoluteSourceFilePath;
-    public Class liveBrushClass;
+    @SuppressWarnings("rawtypes")
+	public Class liveBrushClass;
 
     public LiveBrush(String absoluteSourceFilePath)
     {
@@ -21,7 +22,8 @@ public class LiveBrush
      * @return The class
      */
     
-    private Class getLiveBrushClass(String absoluteSourceFilePath)
+    @SuppressWarnings("rawtypes")
+	private Class getLiveBrushClass(String absoluteSourceFilePath)
     {
         try
         {

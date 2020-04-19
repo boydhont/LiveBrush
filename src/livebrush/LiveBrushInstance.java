@@ -13,7 +13,8 @@ public class LiveBrushInstance
 
     //TODO add frameCountstartvalue
 
-    public LiveBrushInstance(LiveBrush liveBrush, PVector origin)
+    @SuppressWarnings("deprecation")
+	public LiveBrushInstance(LiveBrush liveBrush, PVector origin)
     {
         this.liveBrush = liveBrush;
         this.origin = origin;
@@ -23,10 +24,11 @@ public class LiveBrushInstance
         }
         catch(Exception error) {
             System.out.println(error);
-        } //TODO specifiy exception
+        } //TODO specify exception
     }
 
-    public LiveBrushInstance(LiveBrush liveBrush)
+    @SuppressWarnings("deprecation")
+	public LiveBrushInstance(LiveBrush liveBrush)
     {
         this.liveBrush = liveBrush;
         this.origin = new PVector();
@@ -36,7 +38,7 @@ public class LiveBrushInstance
         }
         catch(Exception error) {
             System.out.println(error);
-        } //TODO specifiy exception
+        } //TODO specify exception
     }
 
     /**

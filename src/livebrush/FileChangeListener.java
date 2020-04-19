@@ -6,10 +6,12 @@ import java.util.*;
 public abstract class FileChangeListener extends TimerTask {
     private String absoluteBrushFolderPath;
     private File filesArray [];
-    private HashMap dir = new HashMap();
+    @SuppressWarnings("rawtypes")
+	private HashMap dir = new HashMap();
     private FileFilterListener fileFilterListener;
 
-    public FileChangeListener(String absoluteBrushFolderPath, String filter) {
+    @SuppressWarnings({ "unchecked", "deprecation" })
+	public FileChangeListener(String absoluteBrushFolderPath, String filter) {
         this.absoluteBrushFolderPath = absoluteBrushFolderPath;
         fileFilterListener = new FileFilterListener(filter);
         filesArray = new File(absoluteBrushFolderPath).listFiles(fileFilterListener);
@@ -22,7 +24,8 @@ public abstract class FileChangeListener extends TimerTask {
      * Checks the given folder for changes
      */
     
-    public final void run() {
+    @SuppressWarnings({ "unchecked", "deprecation", "rawtypes" })
+	public final void run() {
         HashSet checkedFiles = new HashSet();
         filesArray = new File(absoluteBrushFolderPath).listFiles(fileFilterListener);
         for (int i = 0; i < filesArray.length; i++) {
