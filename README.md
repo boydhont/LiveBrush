@@ -21,7 +21,7 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
     lbm = new LiveBrushManager(this);
   }
   ```
-4. Draw the LiveBrush instances in the draw function. Optional: add a cursor
+4. Draw the LiveBrush instances in the draw function. Optionally, add a cursor
   ```
   void draw()
   {
