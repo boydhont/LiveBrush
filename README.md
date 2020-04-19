@@ -63,6 +63,7 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
   }
   ```
  9. Save the file to update the previously drawn brushes
+ 10. It is possible to add constructors and import libraries in the Java files
   
 ---
 Boy d'Hont | www.bdhont.net  
