@@ -17,6 +17,7 @@ Live Brush is meant for live performing and rapid prototyping. Old Processing sk
   
   void setup()
   {
+    fullScreen();
     lbm = new LiveBrushManager(this);
   }
   ```
