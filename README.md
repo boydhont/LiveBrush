@@ -1,7 +1,7 @@
 # Live Brush
 
 ## What is Live Brush?
-Live Brush is a library for live coding with dynamic brushes, developed for Processing 3. Code brushes are dynamicly loaded from .java source files on the harddisk. Brushes can be edited while running the Processing sketch, using a code editor of choice. Processing regognizes changes in the livebrush folder and updates the sketch accordingly.
+Live Brush is a library for live coding with dynamic brushes, developed for Processing 3. Code brushes are dynamically loaded from .java source files on the harddisk. Brushes can be edited while running the Processing sketch, using a code editor of choice. Processing regognizes changes in the livebrush folder and updates the sketch accordingly.
 
 ## Why us LiveBrush?
 Live Brush is meant for live performing and rapid prototyping. Old Processing sketches can be easily recycled to create new interesting visuals in a few minutes, new concepts allow to be propotyped in an instance.
